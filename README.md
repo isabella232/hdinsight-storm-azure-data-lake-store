@@ -74,7 +74,7 @@ If you created a Linux-based Storm on HDInsight cluster, use the steps below to 
     
     When prompted, enter the password used when creating the SSH user for the cluster. If you used a public key instead of a password, you may need to use the `-i` parameter to specify the path to the matching private key.
     
-    > [AZURE.NOTE] If you are using a Windows client for development, you may not have an `scp` command. If so, you can use `pscp`, which is available from [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
+    Note: If you are using a Windows client for development, you may not have an `scp` command. If so, you can use `pscp`, which is available from [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
 
 2. Once the upload completes, use the following to connect to the HDInsight cluster using SSH. Replace __USER__ with the SSH user name you used when creating the cluster. Replace __CLUSTERNAME__ with the name of the cluster.
 
@@ -82,7 +82,7 @@ If you created a Linux-based Storm on HDInsight cluster, use the steps below to 
 
     When prompted, enter the password used when creating the SSH user for the cluster. If you used a public key instead of a password, you may need to use the `-i` parameter to specify the path to the matching private key.
     
-    > [AZURE.NOTE] If you are using a Windows client for development, follow the information in [Connect to Linux-based HDInsight with SSH from Windows](hdinsight-hadoop-linux-use-ssh-windows.md) for information on using the PuTTY client to connect to the cluster.
+    Note: If you are using a Windows client for development, follow the information in [Connect to Linux-based HDInsight with SSH from Windows](https://azure.microsoft.com/documentation/articles/hdinsight-hadoop-linux-use-ssh-windows/) for information on using the PuTTY client to connect to the cluster.
     
 3. Once connected, use the following to start the topology:
 
@@ -113,11 +113,11 @@ If you created a Linux-based Storm on HDInsight cluster, use the steps below to 
 
 There are several ways to view the data. In this section we use the Azure Portal and the `hdfs` command to view the data.
 
-> [AZURE.NOTE] You should allow the topologies to run for several minutes before checking the output data, so that data has been synched to several files on Azure Data Lake Store.
+Note: You should allow the topologies to run for several minutes before checking the output data, so that data has been synched to several files on Azure Data Lake Store.
 
 * __From the [Azure Portal](https://portal.azure.com)__: In the portal, select the Azure Data Lake Store that you used with HDInsight.
 
-    > [AZURE.NOTE] If you did not pin the Data Lake Store to the Azure portal dashboard, you can find it by selecting __Browse__ at the bottom of the list on the left, then __Data Lake Store__, and finally selecting the store.
+    Note: If you did not pin the Data Lake Store to the Azure portal dashboard, you can find it by selecting __Browse__ at the bottom of the list on the left, then __Data Lake Store__, and finally selecting the store.
     
     From the icons at the top of the Data Lake Store, select __Data Explorer__.
     
