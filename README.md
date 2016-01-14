@@ -1,3 +1,9 @@
+---
+services: hdinsight
+platforms: java
+author: blackmist
+---
+
 # hdinsight-storm-azure-data-lake-store
 
 This project demonstrates how to use a Java-based Storm topology to write data to Azure Data Lake Store using the [HdfsBolt](http://storm.apache.org/javadoc/apidocs/org/apache/storm/hdfs/bolt/HdfsBolt.html) component, which is provided as part of Apache Storm.
