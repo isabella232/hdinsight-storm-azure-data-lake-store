@@ -12,7 +12,7 @@
         <dependency>
             <groupId>org.apache.storm</groupId>
             <artifactId>storm-core</artifactId>
-            <version>0.9.3</version>
+            <version>0.10.0</version>
             <!-- provided means "build with it, but it's on the server so don't package it up" -->
             <scope>provided</scope>
         </dependency>
@@ -31,13 +31,19 @@
                     <artifactId>hadoop-hdfs</artifactId>
                 </exclusion>
             </exclusions>
-            <version>0.9.3</version>
+            <version>0.10.0</version>
         </dependency>
         <!-- Storm and WebHDFS use different versions of jetty, so include the one we need here -->
         <dependency>
             <groupId>org.mortbay.jetty</groupId>
             <artifactId>jetty-util</artifactId>
             <version>6.1.26</version>
+        </dependency>
+        <!-- Get the right version of this -->
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-client</artifactId>
+            <version>2.7.1</version>
         </dependency>
     </dependencies>
     <build>
@@ -63,6 +69,8 @@
                         <transformer
                                 implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer">
                         </transformer>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer">
+                        </transformer>
                     </transformers>
                     <!-- Keep us from getting a bad signature error -->
                     <filters>
@@ -86,5 +94,15 @@
                 </executions>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>${basedir}/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <!-- reduce log output -->
+                    <include>log4j2.xml</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 </project>
