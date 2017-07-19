@@ -2,54 +2,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.microsoft.example</groupId>
-    <artifactId>StormToDataLakeStore</artifactId>
+    <artifactId>StormToHdfs</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>StormToDataLakeStore</name>
+    <name>StormToHdfs</name>
     <url>http://maven.apache.org</url>
-    <repositories>
-        <repository>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-                <updatePolicy>never</updatePolicy>
-                <checksumPolicy>fail</checksumPolicy>
-            </snapshots>
-            <id>HDPReleases</id>
-            <name>HDP Releases</name>
-            <url>http://repo.hortonworks.com/content/repositories/releases/</url>
-            <layout>default</layout>
-        </repository>
-        <repository>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-                <updatePolicy>never</updatePolicy>
-                <checksumPolicy>fail</checksumPolicy>
-            </snapshots>
-            <id>HDPJetty</id>
-            <name>Hadoop Jetty</name>
-            <url>http://repo.hortonworks.com/content/repositories/jetty-hadoop/</url>
-            <layout>default</layout>
-        </repository>
-	</repositories>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!--
-        Storm 1.0.1 is for HDInsight 3.5.
+        Storm 1.1.0 and Hadoop 2.7.3 are for HDInsight 3.3.
         To find the version information for earlier HDInsight cluster
         versions, see https://azure.microsoft.com/en-us/documentation/articles/hdinsight-component-versioning/
         -->
-        <storm.version>1.0.1.2.5.3.0-37</storm.version>
-        <hadoop.version>2.7.3.2.5.3.0-37</hadoop.version>
+        <storm.version>1.1.0</storm.version>
+        <hadoop.version>2.7.3</hadoop.version>
     </properties>
     <dependencies>
         <!-- dependency for core storm stuff -->
@@ -86,6 +52,7 @@
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-common</artifactId>
             <version>${hadoop.version}</version>
+            <scope>provided</scope>
             <exclusions>
             <exclusion>
                 <groupId>org.slf4j</groupId>
@@ -150,7 +117,7 @@
                 <directory>${basedir}/resources</directory>
                 <filtering>false</filtering>
                 <includes>
-                    <include>datalakewriter.yaml</include>
+                    <include>writetohdfs.yaml</include>
                     <!-- reduce log output -->
                     <include>log4j2.xml</include>
                 </includes>

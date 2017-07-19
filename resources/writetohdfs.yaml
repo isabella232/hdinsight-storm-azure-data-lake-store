@@ -3,21 +3,22 @@
 
 # topology definition
 # name to be used when submitting
-name: "datalakewriter"
+name: "hdfswriter"
 
 # Components
 # For current versions of Storm/Flux, components must be declared in the order they are referenced
 components:
+  # How often to sync files to HDFS; every 1000 tuples.
   - id: "syncPolicy"
     className: "org.apache.storm.hdfs.bolt.sync.CountSyncPolicy"
     constructorArgs:
       - 1000
-  - id: "rotationPolicy"
-    className: "org.apache.storm.hdfs.bolt.rotation.FileSizeRotationPolicy"
-    constructorArgs:
-      - 5
-      - KB
 
+  # Rotation policy; never.
+  - id: "rotationPolicy"
+    className: "org.apache.storm.hdfs.bolt.rotation.NoRotationPolicy"
+
+  # File format; read the directory from filters at run time, and use a .txt extension when writing.
   - id: "fileNameFormat"
     className: "org.apache.storm.hdfs.bolt.format.DefaultFileNameFormat"
     configMethods:
@@ -26,17 +27,12 @@ components:
       - name: "withExtension"
         args: [".txt"]
 
+  # Internal file format; fields delimited by `|`.
   - id: "recordFormat"
     className: "org.apache.storm.hdfs.bolt.format.DelimitedRecordFormat"
     configMethods:
       - name: "withFieldDelimiter"
         args: ["|"]
-
-  - id: "rotationAction"
-    className: "org.apache.storm.hdfs.common.rotation.MoveFileAction"
-    configMethods:
-      - name: "toDestination"
-        args: ["${hdfs.dest.dir}"]
 
 # spout definitions
 spouts:
@@ -62,8 +58,7 @@ bolts:
         args: [ref: "rotationPolicy"]
       - name: "withSyncPolicy"
         args: [ref: "syncPolicy"]
-      # - name: "addRotationAction"
-      #   args: [ref: "rotationAction"]
+
     parallelism: 1
 
 streams:
