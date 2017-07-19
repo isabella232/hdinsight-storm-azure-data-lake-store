@@ -4,7 +4,7 @@ platforms: java
 author: blackmist
 ---
 
-# hdinsight-storm-azure-data-lake-store
+# Write to HDFS from Storm on HDInsight
 
 This project demonstrates how to use a Java-based Storm topology to write data to the HDFS-compatible storage used by HDInsight. This is either Azure Storage or Azure Data Lake Store, and can be configured when you create the cluster.
 
