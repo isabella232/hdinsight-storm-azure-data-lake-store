@@ -14,9 +14,12 @@ components:
     constructorArgs:
       - 1000
 
-  # Rotation policy; never.
+  # Rotate files when they hit 5 MB
   - id: "rotationPolicy"
-    className: "org.apache.storm.hdfs.bolt.rotation.NoRotationPolicy"
+    className: "org.apache.storm.hdfs.bolt.rotation.FileSizeRotationPolicy"
+    constructorArgs:
+      - 5
+      - "MB"
 
   # File format; read the directory from filters at run time, and use a .txt extension when writing.
   - id: "fileNameFormat"
